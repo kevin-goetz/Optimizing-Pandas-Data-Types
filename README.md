@@ -57,12 +57,17 @@ XXXXXXXXXX
 
 
 ## References
-I found the best information on this topic here:
+**Downcasting and Categoricals**:
 - [Dataquest Blog](https://www.dataquest.io/blog/pandas-big-data/)
 - [Pandas Documentation](https://pandas.pydata.org/pandas-docs/stable/user_guide/scale.html#)
+
+**Sparse Data**:
+- [TDS Blog](https://towardsdatascience.com/working-with-sparse-data-sets-in-pandas-and-sklearn-d26c1cfbe067)
+
+**Optimal I/O Files**:
 - [TDS Blog](https://towardsdatascience.com/the-best-format-to-save-pandas-data-414dca023e0d)
 
-The Dataset is from Ken Huang: 
+The **Dataset** is from Ken Huang: 
 - [Kaggle Profile](https://www.kaggle.com/kenhuang41/nba-basic-game-data-by-player)
 
 

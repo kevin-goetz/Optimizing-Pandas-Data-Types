@@ -21,7 +21,7 @@ Technical skills honed in this project are:
 - Batch-Import of csv-files
 - Feature Engineering
 - Pandas Data Type Optimization
-- Undertsanding of Pandas & NumPy internals
+- Understanding of Pandas & NumPy internals
 
 ## Requirements
 Installed modules:

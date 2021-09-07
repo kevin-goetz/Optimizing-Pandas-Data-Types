@@ -22,6 +22,7 @@ Technical skills honed in this project are:
 - Feature Engineering
 - Pandas Data Type Optimization
 - Understanding of Pandas & NumPy internals
+- Using different flat file types with faster I/O than csv
 
 ## Requirements
 Installed modules:
@@ -49,7 +50,7 @@ When pandas reads a csv it looks at the first few rows for each column and then 
 Often Strings are represented as objects in a pandas DataFrame, which itself can be a memory safer when transformed to strings. The problem with strings though is that they occupy a lot of space and are often frequently repeated in a column. This means the column has low cardinality and a more efficient data storage option are categories. Much like OrdinalEncoder in Scikit-learn, pandas safes a mapping for all the different strings internally and the rows get the corresponding number (internally). That way strings won't be repeated and memory is safed --> **df.astype('category')**
 
 4. **Use sparse arrays for low cardinality numbers**: <br/>
-Use a sparse array if you have sparse data. Sparse data is data that primarily has the same value. 10 million float64 values uses 80MB of memory. If most of those values are the same, you can save a whole lot of memory converting to sparse. Making all but 10 of those values the same and converting to sparse drops the memory to .000248MB! 👍 Convert to sparse with pd.arrays.SparseArray().
+Sparse data is data which contains mostly NaN / missing value, though any value can be chosen, including 0. On the contrary, A column in which the majority of elements are non zero is called dense. Convert to sparse with **pd.arrays.SparseArray()**. Though this technique was not needed in this project, it could be an advantage in future projects with sparse data.
 
 ## Outlook
 XXXXXXXXXX
@@ -59,6 +60,7 @@ XXXXXXXXXX
 I found the best information on this topic here:
 - [Dataquest Blog](https://www.dataquest.io/blog/pandas-big-data/)
 - [Pandas Documentation](https://pandas.pydata.org/pandas-docs/stable/user_guide/scale.html#)
+- [TDS Blog](https://towardsdatascience.com/the-best-format-to-save-pandas-data-414dca023e0d)
 
 The Dataset is from Ken Huang: 
 - [Kaggle Profile](https://www.kaggle.com/kenhuang41/nba-basic-game-data-by-player)

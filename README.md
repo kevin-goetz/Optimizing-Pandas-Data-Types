@@ -29,10 +29,10 @@ Installed modules:
 
 | Library            | Version |
 | :---               | --- |
-| sys (Python)       | 3.9.1 | 
-| pandas             | 1.2.5 | 
-| numpy              | 1.21.0 | 
-| matplotlib         | 3.4.1 |
+| sys (Python)       | 3.9.7 | 
+| pandas             | 1.3.2 |
+| numpy              | 1.21.0 |
+
 
 
 ## Personal Learnings:

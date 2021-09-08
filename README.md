@@ -15,14 +15,56 @@ While tools like Spark can handle large data sets (100 gigabytes to multiple ter
 
 That's what this Notebook is all about: How to shrink your pandas dataframe so it fit's your RAM better - without losing any information + making faster operations possible.
 
+## Impact
+
+
+
+## Copy & Try
+
+```python
+
+def downcast(df: pd.DataFrame) -> pd.DataFrame:
+    
+    ''' Compression of the common dtypes "float64", "int64", "object" or "string" '''
+
+    # memory before downcasting
+    mem_before = round(df.memory_usage(deep=True).sum() / (1024**2), 2)
+
+    # convert the dataframe columns to appropriate dtypes (e.g. object to string, or 1.0 float to 1 integer, etc.)
+    df = df.convert_dtypes()
+
+    # string categorization (only the ones with low cardinality)
+    for column in df.select_dtypes(['string', 'object']):
+        if (len(df[column].unique()) / len(df[column])) < 0.5:
+            df[column] = df[column].astype('category')
+
+    # float64 downcasting
+    for column in df.select_dtypes(['float']):
+        df[column] = pd.to_numeric(df[column], downcast='float')
+
+    # int64 downcasting (depending if negative values are apparent (='signed') or only >=0 (='unsigned'))
+    for column in df.select_dtypes(['integer']):
+        if df[column].min() >= 0:
+            df[column] = pd.to_numeric(df[column], downcast='unsigned')
+        else:
+            df[column] = pd.to_numeric(df[column], downcast='signed')
+
+    # memory after downcasting & compression
+    mem_after = round(df.memory_usage(deep=True).sum() / (1024**2), 2)
+    compression = round(((mem_before - mem_after) / mem_before) * 100)
+
+    print(f'DataFrame compressed by {compression}% from {mem_before} MB down to {mem_after} MB.')
+    return df
+    
+```
 
 ## Skills
 Technical skills honed in this project are:
-- Batch-Import of csv-files
+- Batch-Wrangling of csv-files
 - Feature Engineering
 - Pandas Data Type Optimization
 - Understanding of Pandas & NumPy internals
-- Using different flat file types with faster I/O than csv
+- Using different flat file types with faster I/O
 
 ## Requirements
 Installed modules:
@@ -31,9 +73,6 @@ Installed modules:
 | :---               | --- |
 | sys (Python)       | 3.9.7 | 
 | pandas             | 1.3.2 |
-| numpy              | 1.21.0 |
-
-
 
 ## Personal Learnings:
 This time the personal learnings can be summarized in a checklist for future projects:

@@ -11,7 +11,7 @@ By making use of the pd.read_csv parameters, downcasting the numerical values, a
 ### Why
 Pandas provides data structures for in-memory analytics, which makes using pandas to analyze datasets that are larger than memory datasets somewhat tricky. Even datasets that are a sizable fraction of memory become unwieldy, as some pandas operations need to make intermediate copies. With small data (under 100 megabytes), performance is rarely a problem. When we move to larger data (100 megabytes to multiple gigabytes), performance issues can make run times much longer, and cause code to fail entirely due to insufficient memory.
 
-That's what this Notebook is all about: How to shrink your pandas dataframe so it fit's your RAM better - without losing any information + making faster operations possible.
+That's what this Notebook is all about: How to shrink your pandas dataframe so it fit's your RAM better - without losing any information.
 
 ## Impact
 
@@ -96,7 +96,7 @@ Sparse data is data which contains mostly NaN / missing value, though any value 
 A csv-file doesn't save any data types so it would be a pitty to loose all the work of optimizing a dataframe when saved to csv. There are more suitable file formats with faster I/O as well, like: pickle, hdf5, feather, parquet, etc. Just use pandas **df.to_feather(filepath, compression='lz4')**.
 
 ## Outlook
-XXXXXXXXXX
+There is still one big disadvantage: The function is only applicable when the DataFrame is already loaded into RAM. So what if we need to optimize the data types before loading it into RAM because it doesn't fit in there yet? That's where chunking and saving the minimum and maximum of the column into a DataFrame comes in handy. One could then downcast this intermediate DataFrame and safe the optimized Data Types as a dictionary for the read_csv parameter "dtype: dict". Another opportunity could be a out-of-core library like [Vaex](https://vaex.io/docs/index.html) that makes use of memory-mapping and doesn't load all the data into RAM.
 
 
 ## References

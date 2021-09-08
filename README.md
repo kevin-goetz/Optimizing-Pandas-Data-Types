@@ -101,6 +101,8 @@ A csv-file doesn't save any data types so it would be a pitty to loose all the w
 ## Outlook
 There is still one big disadvantage: The function is only applicable when the DataFrame is already loaded into RAM. So what if we need to optimize the data types before loading it into RAM because it doesn't fit in there yet? That's where chunking and saving the minimum and maximum of the column into a DataFrame comes in handy. One could then downcast this intermediate DataFrame and safe the optimized Data Types as a dictionary for the read_csv parameter "dtype: dict". Another opportunity could be a out-of-core library like [Vaex](https://vaex.io/docs/index.html) that makes use of memory-mapping and doesn't load all the data into RAM.
 
+Also sparse arrays weren't used in this project and could be an advantage in certain datasets with sparse data, e.g. tables for recommendation engines that have a lot of 1/0 data. This feature would exceed an acceptable function length and could be added in a future project for a custom module.
+
 
 ## References
 **Downcasting and Categoricals**:

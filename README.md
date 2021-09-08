@@ -26,7 +26,7 @@ def downcast(df: pd.DataFrame) -> pd.DataFrame:
     ''' Compression of the common dtypes "float64", "int64", "object" or "string" '''
 
     # memory before downcasting
-    mem_before = round(df.memory_usage(deep=True).sum() / (1024**2), 2)
+    mem_before = df.memory_usage(deep=True).sum()
 
     # convert the dataframe columns to appropriate dtypes (e.g. object to string, or 1.0 float to 1 integer, etc.)
     df = df.convert_dtypes()
@@ -48,10 +48,10 @@ def downcast(df: pd.DataFrame) -> pd.DataFrame:
             df[column] = pd.to_numeric(df[column], downcast='signed')
 
     # memory after downcasting & compression
-    mem_after = round(df.memory_usage(deep=True).sum() / (1024**2), 2)
-    compression = round(((mem_before - mem_after) / mem_before) * 100)
+    mem_after = df.memory_usage(deep=True).sum()
+    compression = ((mem_before - mem_after) / mem_before) * 100
 
-    print(f'DataFrame compressed by {compression}% from {mem_before} MB down to {mem_after} MB.')
+    print(f'DataFrame compressed by {round(compression)}% from {round(mem_before / (1024**2), 2)} MB down to {round(mem_after / (1024**2), 2)} MB.')
     return df
     
 ```

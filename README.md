@@ -43,16 +43,19 @@ This time the personal learnings can be summarized in a checklist for future pro
   - **dtype**: if you already know the optimal data type for the columns, specify it with a dict
   - **chunksize**: load the data as an iterator and preprocess/aggregate it in a loop, concatenating the results again
 
-2. **Downcast numeric values**: <br/>
+2. **Choose correct data types**: <br/>
+**df.convert_dtypes()** is a really powerful method that converts the df into a df with correct data types. For example: There is a column that has a float64 data type, but it only holds numbers with .0, so it's basically all integers. This method corrects the column automatically to int64. Or Object data types that are actually strings. All this safes memory and it also brings another advantage: the new data types are pandas ExtensionDtype. This data type allows integer columns to have NA-values and not convert to float, like it used to be. With the [Pandas Version Update 1.3.0](https://pandas.pydata.org/docs/whatsnew/v1.3.0.html) from July 2021 those data types can be downcasted.
+
+3. **Downcast numeric values**: <br/>
 When pandas reads a csv it looks at the first few rows for each column and then guesses the data type (int, float, string, etc.). Since pandas doesn't know if the last value in this column exceeds any size (big numbers), it automatically upcasts to the biggest format (int64, float64, etc.) which is often not needed. You can use the **pd.to_numeric(downcast=str)** function to take care of this.
 
-3. **Use the categorical data type for low cardinality strings**: <br/>
+4. **Use the categorical data type for low cardinality strings**: <br/>
 Often Strings are represented as objects in a pandas DataFrame, which itself can be a memory safer when transformed to strings. The problem with strings though is that they occupy a lot of space and are often frequently repeated in a column. This means the column has low cardinality and a more efficient data storage option are categories. Much like OrdinalEncoder in Scikit-learn, pandas safes a mapping for all the different strings internally and the rows get the corresponding number (internally). That way strings won't be repeated and memory is safed --> **df.astype('category')**
 
-4. **Use sparse arrays for low cardinality numbers**: <br/>
-Sparse data is data which contains mostly NaN / missing value, though any value can be chosen, including 0. On the contrary, A column in which the majority of elements are non zero is called dense. Convert to sparse with **pd.arrays.SparseArray()** or directly use the parameter of pandas dummy function: **pd.get_dummies(data, sparse=True)**. Though this technique was not needed in this project, it could be an advantage in future projects with sparse data.
+5. **Use sparse arrays for low cardinality numbers**: <br/>
+Sparse data is data which contains mostly NaN / missing value, though any value can be chosen, including 0. On the contrary, A column in which the majority of elements are non zero is called dense. Convert to sparse with **df[column] = df[column].astype(pd.SparseDtype(df['FG'].dtype, pd.NA))** or directly use the parameter of pandas dummy function: **pd.get_dummies(data, sparse=True)**. Though this technique was not needed in this project, it could be an advantage in future projects with sparse data.
 
-5. **Using optimized I/O file formats**: <br/>
+6. **Using optimized I/O file formats**: <br/>
 A csv-file doesn't save any data types so it would be a pitty to loose all the work of optimizing a dataframe when saved to csv. There are more suitable file formats with faster I/O as well, like: pickle, hdf5, feather, parquet, etc. Just use pandas **df.to_feather(filepath, compression='lz4')**.
 
 ## Outlook

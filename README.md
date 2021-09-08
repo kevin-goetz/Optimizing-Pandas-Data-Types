@@ -78,6 +78,7 @@ Installed modules:
 | :---               | --- |
 | sys (Python)       | 3.9.7 | 
 | pandas             | 1.3.2 |
+| seaborn            | 0.11.1 |
 
 ## Personal Learnings:
 This time the personal learnings can be summarized in a checklist for future projects:

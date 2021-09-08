@@ -14,10 +14,13 @@ Pandas provides data structures for in-memory analytics, which makes using panda
 That's what this Notebook is all about: How to shrink your pandas dataframe so it fit's your RAM better - without losing any information.
 
 ## Impact
+I tested the function below with the 17 Seaborn test datasets. The code for the test is in the folder ["Seaborn Test Datasets"](https://github.com/kevin-goetz/Optimizing-Pandas-Data-Types/tree/main/Seaborn%20Test%20Datasets):
 
+[<img src="https://github.com/kevin-goetz/Optimizing-Pandas-Data-Types/blob/main/Seaborn%20Test%20Datasets/Seaborn%20Test%20Data%20Sets%20Downsized%20Ranking.PNG" height="400em" align="center"/>
 
+Another great plus of this project is when you safe your downsized DataFrame to **df.to_feather(path)**. All the data types are safed so you only have to do it once and it costs way less disc space and the read/write speed is much faster. 
 
-## Copy & Try
+## Copy & Try Yourself!
 
 ```python
 

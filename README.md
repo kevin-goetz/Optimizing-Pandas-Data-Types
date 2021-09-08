@@ -3,15 +3,13 @@
 ## Description
 
 ### What
-Project on how to optimize the default pandas data types that are infered when reading a csv- file, for example. The result is dataframe that takes up much less RAM without the loss of any information in the data.
+Project on how to optimize the default pandas data types that are inferred when reading a csv-file. The result is a dataframe that takes up much less RAM without the loss of any information in the data.
 
 ### How
 By making use of the pd.read_csv parameters, downcasting the numerical values, and representing columns with low cardinality in a different way (categories for strings and sparse arrays for numbers). A detailed explanation of how is listed in my personal learnings below.
 
 ### Why
 Pandas provides data structures for in-memory analytics, which makes using pandas to analyze datasets that are larger than memory datasets somewhat tricky. Even datasets that are a sizable fraction of memory become unwieldy, as some pandas operations need to make intermediate copies. With small data (under 100 megabytes), performance is rarely a problem. When we move to larger data (100 megabytes to multiple gigabytes), performance issues can make run times much longer, and cause code to fail entirely due to insufficient memory.
-
-While tools like Spark can handle large data sets (100 gigabytes to multiple terabytes), taking full advantage of their capabilities usually requires more expensive hardware. And unlike pandas, they lack rich feature sets for high quality data cleaning, exploration, and analysis. For medium-sized data, we’re better off trying to get more out of pandas, rather than switching to a different tool.
 
 That's what this Notebook is all about: How to shrink your pandas dataframe so it fit's your RAM better - without losing any information + making faster operations possible.
 

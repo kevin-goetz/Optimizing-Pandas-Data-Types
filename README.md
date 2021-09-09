@@ -34,7 +34,7 @@ def downcast(df: pd.DataFrame) -> pd.DataFrame:
     mem_before = df.memory_usage(deep=True).sum()
     mem_before_mb = round(mem_before / (1024**2), 2)
 
-    # convert the dataframe columns to appropriate dtypes (e.g. object to string, or 1.0 float to 1 integer, etc.)
+    # convert the dataframe columns to ExtensionDtype (e.g. object to string, or 1.0 float to 1 integer, etc.)
     df = df.convert_dtypes()
 
     # string categorization (only the ones with low cardinality)

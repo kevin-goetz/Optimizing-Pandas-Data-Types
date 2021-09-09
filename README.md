@@ -22,6 +22,8 @@ Another great plus of this project is when you safe your downsized DataFrame to 
 
 ## Copy & Try Yourself!
 
+Just copy the function definition and use it with one of your bigger dataframes: df_small = downcast(df_big). That easy.
+
 ```python
 
 def downcast(df: pd.DataFrame) -> pd.DataFrame:

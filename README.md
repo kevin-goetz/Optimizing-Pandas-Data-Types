@@ -1,6 +1,6 @@
 # Optimizing-Pandas-Data-Types
 
-## Access 
+## Access
 View the notebooks online:
 [![nbviewer](https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg)](https://nbviewer.jupyter.org/github/kevin-goetz/Optimizing-Pandas-Data-Types/tree/main/)
 

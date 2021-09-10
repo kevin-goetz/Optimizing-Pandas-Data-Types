@@ -1,5 +1,14 @@
 # Optimizing-Pandas-Data-Types
 
+## Access 
+View the notebooks online:
+[![nbviewer](https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg)](https://nbviewer.jupyter.org/github/kevin-goetz/Optimizing-Pandas-Data-Types/tree/main/)
+
+Excecute the notebooks online: 
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/kevin-goetz/Optimizing-Pandas-Data-Types/HEAD)
+
+ This can take some time if the binder environment needs to be rebuilt. 
+
 ## Description
 
 ### What
